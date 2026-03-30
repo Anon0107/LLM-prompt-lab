@@ -7,7 +7,7 @@ Prompt engineering experiments built during my AI engineering learning journey u
 - News API
 - Open-Meteo API
 - Python 3.11
-- Environment variables required: see `.env.example`
+- Environment variables required — see `.env.example`
 
 ## Day 1 — How LLMs Work + Temperature
 **Experiment:** Same prompt at temperature 0.0 / 0.5 / 1.0, 5 runs each.  
