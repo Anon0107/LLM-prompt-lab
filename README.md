@@ -11,7 +11,6 @@ Prompt engineering experiments built during my AI engineering learning journey u
 
 ## Day 1 — How LLMs Work + Temperature
 **Experiment:** Same prompt at temperature 0.0 / 0.5 / 1.0, 5 runs each.  
-
 **Findings:**   
 Temperature = 0.0: same response every run.  
 Temperature = 0.5: almost same response every run with 1-2 different respond each run.  
