@@ -41,3 +41,8 @@ Conclusion: minimum 1 example per class, 2 recommended when class boundaries are
 **Experiment:** Multi-tool script where Claude dispatches to weather (Open-Meteo API) or news (NewsAPI) based on user query.  
 **Technique:** Tool use loop, multi-tool response handling, and tool error handling.  
 **Findings:** Claude ignores optional parameters when they are not relevant to the user query. Clearer parameter descriptions lead to more accurate tool calls. Passing `'is_error': True` in a tool result block causes Claude to acknowledge the failure and respond gracefully instead of hallucinating data.
+
+## Day 4 — CLI Chatbot with Token Counting
+**Experiment:** A CLI chatbot that preserves conversation history, tracks token costs, and auto-summarizes to limit token usage.  
+**Technique:** Conversation history management, input token estimation, and summarization prompting to preserve context within token limits.  
+**Findings:** Claude maintains context across turns via conversation history, correctly inferring and responding to prompts in relevant context. Auto-summarizing history when input tokens exceed amount set reduces token usage in longer conversations while preserving context. However, details from earlier turns are gradually compressed away, Claude's recall of specific early context degrades over time.
