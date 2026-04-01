@@ -9,6 +9,12 @@ Prompt engineering experiments built during my AI engineering learning journey u
 - Python 3.11
 - Environment variables required — see `.env.example`
 
+## Setup
+- Clone the repo
+- ```pip install anthropic python-dotenv```
+- Copy `.env.example` to `.env` and add your API keys
+- Run any script directly, e.g.```python day1.py```
+
 ## Day 1 — How LLMs Work + Temperature
 **Experiment:** Same prompt at temperature 0.0 / 0.5 / 1.0, 5 runs each.  
 **Findings:**   
@@ -25,8 +31,8 @@ Conclusion: More consistency for lower temperature, more creativity for higher t
 **Findings:** Tags together with format specification contributes to a more consistent and desired response by Claude, error handling included when parsing JSON object to handle unintended code fences in response.  
 
 **Experiment 2: Chain-of-Thought and Zero-Shot**  
-**Technique:** CoT (with steps includedin prompt) vs no CoT (Zero-Shot).  
-**Findings:** For insturctions such as a math problems with multiple solutions, CoT and no CoT both produces similar responses. Differences: the working for CoT is consistent,following the steps in the prompt but diverse for no CoT.  
+**Technique:** CoT (with steps included in prompt) vs no CoT (Zero-Shot).  
+**Findings:** For instructions such as a math problems with multiple solutions, CoT and no CoT both produces similar responses. Differences: the working for CoT is consistent,following the steps in the prompt but diverse for no CoT.  
 
 **Experiment 3: Few-Shot**  
 **Technique:** Example logic in prompts, 1 Example provided per class.  
@@ -45,3 +51,8 @@ Conclusion: minimum 1 example per class, 2 recommended when class boundaries are
 **Experiment:** A CLI chatbot that preserves conversation history, tracks token costs, and auto-summarizes to limit token usage.  
 **Technique:** Conversation history management, input token estimation, and summarization prompting to preserve context within token limits.  
 **Findings:** Claude maintains context across turns via conversation history, correctly inferring and responding to prompts in relevant context. Auto-summarizing history when input tokens exceed amount set reduces token usage in longer conversations while preserving context. However, details from earlier turns are gradually compressed away, Claude's recall of specific early context degrades over time.
+
+## Day 5 — Upgraded CLI Chatbot (Day 4 Extension)
+**Experiment:** Extended the Day 4 chatbot with streaming, better error handling, and CLI commands.  
+**Technique:** Streaming via `client.messages.stream()`, exponential backoff with retry cap and time ceiling, command detection.  
+**Findings:** Streaming prints response chunks as they arrive, improving perceived responsiveness, more noticeable on longer responses. Capping retries at 5 and backoff at 60s prevents infinite blocking when the server is persistently unavailable. Custom CLI commands invloves conditional string matching on inputs prefixed with `/` before the API call.  
